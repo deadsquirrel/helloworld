@@ -26,4 +26,4 @@ while True:
     conn.send(data.upper())
 
 
-conn.close()
+#conn.close()
