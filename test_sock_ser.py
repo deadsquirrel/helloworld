@@ -13,15 +13,16 @@ sock.bind(('', 9090))
 sock.listen(1)
 print 'listening... . . .  .   .    .     .'
 
-conn, addr = sock.accept()
-
-print 'conected:', addr
+#conn, addr = sock.accept()
+#print 'conected:', addr
 
 # получаем данные кусками по 1024б
 # и возвращаем их клиенту в вехнем регистре
 
 try:
     while True:
+        conn, addr = sock.accept()
+        print 'conected:', addr
         data = conn.recv(1024)
 #    if not data:
 #        break
