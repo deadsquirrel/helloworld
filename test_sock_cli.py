@@ -9,9 +9,11 @@ sock.connect((chost, 9090))
 #sock.connect(('52.38.123.102', 9090))
 
 msg = raw_input('Enter you message: ')
+
 sock.send(msg)
 
 data = sock.recv(1024)
-sock.close()
+
+#sock.close()
 
 print data

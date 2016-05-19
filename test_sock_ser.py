@@ -19,11 +19,15 @@ print 'conected:', addr
 
 # получаем данные кусками по 1024б
 # и возвращаем их клиенту в вехнем регистре
-while True:
-    data = conn.recv(1024)
-    if not data:
-        break
-    conn.send(data.upper())
 
-
-#conn.close()
+try:
+    while True:
+        data = conn.recv(1024)
+#    if not data:
+#        break
+        if data == 'quit':
+#        conn.close()
+            conn.send("kill!")
+        conn.send(data.upper())
+finally:
+    conn.close()
