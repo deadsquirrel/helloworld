@@ -44,7 +44,7 @@ while done:
         if y > 360: # высота экрана минус ширина обьекта
             square_go_down = False
     else:
-        y -= 1
+        y -= 5
         if y < 0:
             square_go_down = True
     
@@ -52,3 +52,5 @@ while done:
     screen.blit(square, (x, y))
     window.blit(screen,  (0, 0))
     pygame.display.flip()
+    # делаем задержку
+    pygame.time.delay(5)
