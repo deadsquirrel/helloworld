@@ -29,9 +29,18 @@ while done:
     # красим окно , цвета в RGB
     screen.fill((50, 16, 85))
 
-    x += 1
+    # учим обьект двигаться
+    if square_go_right == True:
+        x += 1
+        if x == 360: # ширина экрана минус ширина обьекта
+            square_go_right = False
+    else:
+        x -= 1
+        if x == 0:
+            square_go_right = True
+                    
     
     # указываем что и куда отображаем
-    screen.blit(square, (0, 0))
+    screen.blit(square, (x, 0))
     window.blit(screen,  (0, 0))
     pygame.display.flip()
