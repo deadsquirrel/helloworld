@@ -32,15 +32,23 @@ while done:
     # учим обьект двигаться
     if square_go_right == True:
         x += 1
-        if x == 360: # ширина экрана минус ширина обьекта
+        if x > 360: # ширина экрана минус ширина обьекта
             square_go_right = False
     else:
         x -= 1
-        if x == 0:
+        if x < 0:
             square_go_right = True
-                    
+
+    if square_go_down == True:
+        y += 1
+        if y > 360: # высота экрана минус ширина обьекта
+            square_go_down = False
+    else:
+        y -= 1
+        if y < 0:
+            square_go_down = True
     
     # указываем что и куда отображаем
-    screen.blit(square, (x, 0))
+    screen.blit(square, (x, y))
     window.blit(screen,  (0, 0))
     pygame.display.flip()
