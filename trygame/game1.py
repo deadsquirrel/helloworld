@@ -23,15 +23,22 @@ class Sprite:
         screen.blit(self.bitmap,(self.x, self.y))
 
 # создаем героев
-boy1 = Sprite(0,0, 'face1.png')
+boy1 = Sprite(200,0, 'face1.png')
 # новый атрибут герою - рычаг управления_1
 boy1_go_right = True
-boy1_go_down = True
+boy1_go_up = False
 
-boy2 = Sprite(40,40, 'face2.png')
+boy2 = Sprite(200,360, 'face2.png')
 # новый атрибут герою - рычаг управления_2
 boy2_go_right = True
-boy2_go_down = True
+boy2_go_up = True
+
+# функция проверки пересечения объектов. 40 - величина ширины объектов
+def Intersect(x1, x2, y1, y2):
+    if ((x1 > x2-40) and (x1 < x2+40) and (y1 > y2-40) and (y1 < y2+40)) :
+        return 1
+    else:
+        return 0
 
 done = True
 while done:
@@ -43,7 +50,31 @@ while done:
     screen.fill((50, 16, 85))
 
 # учим обьекты двигаться
-# boy1
+   
+    if boy1_go_up == False:
+        boy1.y += 1
+        if boy1.y > 360: 
+            boy1_go_up = True
+    else:
+        boy1.y -= 1
+        if boy1.y < 0:
+            boy1_go_up = False
+            
+    if boy2_go_up == True:
+        boy2.y -= 1
+        if boy2.y < 0: 
+            boy2_go_up = False
+    else:
+        boy2.y += 1
+        if boy2.y > 360:
+            boy2_go_up = True
+        # проверяем, столкнулись ил и меняем направление движения
+
+    if Intersect(boy1.x, boy2.x, boy1.y, boy2.y) == True:
+        boy1_go_up == True
+        boy2_go_up == False
+    '''
+    # boy1
     if boy1_go_right == True:
         boy1.x += 1
         if boy1.x > 360: # ширина экрана минус ширина обьекта
@@ -81,9 +112,9 @@ while done:
         boy2.y -= 2
         if boy2.y < 0:
             boy2_go_down = True
-    
-            
-    # отобразим обьекты
+   '''    
+           
+# отобразим обьекты
     boy1.render()
     boy2.render()
 
