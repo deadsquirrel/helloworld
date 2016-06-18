@@ -70,7 +70,7 @@ while done:
             boy2_go_up = True
         # проверяем, столкнулись ил и меняем направление движения
 
-    if Intersect(boy1.x, boy2.x, boy1.y, boy2.y) == True:
+    if Intersect(boy2.x, boy1.x, boy2.y, boy1.y) == 1:
         boy1_go_up == True
         boy2_go_up == False
     '''
