@@ -20,7 +20,7 @@ class Sprite:
         self.bitmap.set_colorkey((255,255,255))
 # отображаем обьект на игровой экран
     def render(self):
-        screen.blit(self.bitmap,(self.x,self.y))
+        screen.blit(self.bitmap,(self.x, self.y))
 
 # создаем героев
 boy1 = Sprite(0,0, 'face1.png')
@@ -36,7 +36,7 @@ boy2_go_down = True
 done = True
 while done:
     for e in pygame.event.get():
-        if e.type == pygame. QUIT:
+        if e.type == pygame.QUIT:
             done = False
 
 # красим окно , цвета в RGB
@@ -69,7 +69,7 @@ while done:
         if boy2.x > 360: # ширина экрана минус ширина обьекта
             boy2_go_right = False
     else:
-        boy2.x -= 1
+        boy2.x -= 3
         if boy2.x < 0:
             boy2_go_right = True
 
@@ -78,9 +78,9 @@ while done:
         if boy2.y > 360: # высота экрана минус ширина обьекта
             boy2_go_down = False
     else:
-        boy2.y -= 1
+        boy2.y -= 2
         if boy2.y < 0:
-            boy1_go_down = True
+            boy2_go_down = True
     
             
     # отобразим обьекты

@@ -27,7 +27,7 @@ square_go_down = True
 done = True
 while done:
     for e in pygame.event.get():
-        if e.type == pygame. QUIT:
+        if e.type == pygame.QUIT:
             done = False
 
     # красим окно , цвета в RGB
