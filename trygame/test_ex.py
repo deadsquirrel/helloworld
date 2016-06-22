@@ -78,7 +78,7 @@ while done:
             if hero.x < 350:
                 hero.x += 1
         if e.key == pygame.K_UP:
-            if hero.y > 70:
+            if hero.y > 200:
                 hero.y -= 1
         if e.key == pygame.K_DOWN:
             if hero.y < 350:
@@ -90,23 +90,24 @@ while done:
                 strela.y = hero.y - 15
                 strela_go = True
         # событие - движение мыши
-        if e.type == pygame.MOUSEMOTION:
-            pygame.mouse.set_visible(True)
-            m = pygame.mouse.get_pos()
-            print m
-            # pygame.mouse.get_pos()
-            # (x, y)
+    if e.type == pygame.MOUSEMOTION:
+        pygame.mouse.set_visible(False)
+        m = pygame.mouse.get_pos()
+        # pygame.mouse.get_pos()
+        # (x, y)
+        if m[0] > 10 and m[0] < 350:
             hero.x = m[0]
+        if m[1] > 200 and m[1] < 350:
             hero.y = m[1]
-        # событие - нажатие кнопки мыши
-        # mousebuttondown
-        # left - 1, right - 2, center - 3
-        if e.type == pygame.MOUSEBUTTONDOWN:
-            if e.button == 1:
-                if strela_go == False:
-                    strela.x = hero.x+15
-                    strela.y = hero.y
-                    strela_go = True
+    # событие - нажатие кнопки мыши
+    # mousebuttondown
+    # left - 1, right - 2, center - 3
+    if e.type == pygame.MOUSEBUTTONDOWN:
+        if e.button == 1:
+            if strela_go == False:
+                strela.x = hero.x+15
+                strela.y = hero.y
+                strela_go = True
     # перемещение стрелы
     if strela.y < 0:
         strela_go = False
@@ -133,35 +134,3 @@ while done:
     pygame.display.flip()
     # делаем задержку
     pygame.time.delay(15)
-
-'''
-    
-    if zet_go == True:
-        zet.y += 1
-        if zet.y > 360: 
-            zet_go = False
-    else:
-        zet.y -= 1
-        if zet.y < 0:
-            zet_go = True
-
-    if hero_go == True:
-        hero.y -= 1
-        if hero.y < 0: 
-            hero_go = False
-    else:
-        hero.y += 1
-        if hero.y > 360:
-            hero_go = True
-
-
-    if Intersect (zet.x, hero.x, zet.y, hero.y) == 1:
-        if zet_go == True:
-            zet_go = False
-        else:
-            zet_go = True
-        if hero_go == True:
-            hero_go = False
-        else:
-            hero_go = True
-   '''
