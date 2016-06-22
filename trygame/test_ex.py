@@ -91,11 +91,13 @@ while done:
                 strela_go = True
         # событие - движение мыши
         if e.type == pygame.MOUSEMOTION:
-            m = pygame.mouse.get_post()
-            # pygame.mouse.get_post()
+            pygame.mouse.set_visible(True)
+            m = pygame.mouse.get_pos()
+            print m
+            # pygame.mouse.get_pos()
             # (x, y)
             hero.x = m[0]
-            hero.y = m[0]
+            hero.y = m[1]
         # событие - нажатие кнопки мыши
         # mousebuttondown
         # left - 1, right - 2, center - 3
