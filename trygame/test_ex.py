@@ -89,7 +89,22 @@ while done:
                 strela.x = hero.x + 15
                 strela.y = hero.y - 15
                 strela_go = True
-
+        # событие - движение мыши
+        if e.type == pygame.MOUSEMOTION:
+            m = pygame.mouse.get_post()
+            # pygame.mouse.get_post()
+            # (x, y)
+            hero.x = m[0]
+            hero.y = m[0]
+        # событие - нажатие кнопки мыши
+        # mousebuttondown
+        # left - 1, right - 2, center - 3
+        if e.type == pygame.MOUSEBUTTONDOWN:
+            if e.button == 1:
+                if strela_go == False:
+                    strela.x = hero.x+15
+                    strela.y = hero.y
+                    strela_go = True
     # перемещение стрелы
     if strela.y < 0:
         strela_go = False
