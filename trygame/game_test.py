@@ -49,7 +49,7 @@ while done:
            
 # красим окно , цвета в RGB
     screen.fill((5, 6, 5))
-    
+    '''  
     if leo_go == True:
         leo.y += 1
         if leo.y > 360: 
@@ -58,7 +58,38 @@ while done:
         leo.y -= 1
         if leo.y < 0:
             leo_go = True
+    '''
+    # событие - нажатие клавиш
+    if e.type == pygame.KEYDOWN:
+        # перемещение героя
+        if e.key == pygame.K_a:
+            if leo.x > 0:
+                leo.x -= 1
+        if e.key == pygame.K_d:
+            if leo.x < 360:
+                leo.x += 1
+        if e.key == pygame.K_w:
+            if leo.y > 0:
+                leo.y -= 1
+        if e.key == pygame.K_s:
+            if leo.y < 360:
+                leo.y += 1
 
+        # перемещение героя 2
+        if e.key == pygame.K_LEFT:
+            if ian.x > 0:
+                ian.x -= 1
+        if e.key == pygame.K_RIGHT:
+            if ian.x < 360:
+                ian.x += 1
+        if e.key == pygame.K_UP:
+            if ian.y > 0:
+                ian.y -= 1
+        if e.key == pygame.K_DOWN:
+            if ian.y < 360:
+                ian.y += 1
+
+                '''
     if ian_go == True:
         ian.y -= 1
         if ian.y < 0: 
@@ -67,7 +98,7 @@ while done:
         ian.y += 1
         if ian.y > 360:
             ian_go = True
-
+                '''
 
     if Intersect (leo.x, ian.x, leo.y, ian.y) == 1:
         if leo_go == True:
