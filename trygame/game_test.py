@@ -33,6 +33,8 @@ ian = Sprite(200,360, 'face2.png')
 ian_go_right = True
 ian_go = True
 
+ball = Sprite(200,200, 'bb1.png')
+ball_go = True
 
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 def Intersect(x1, x2, y1, y2):
@@ -48,7 +50,7 @@ while done:
             done = False
            
 # красим окно , цвета в RGB
-    screen.fill((5, 6, 5))
+    screen.fill((15, 106, 15))
     '''  
     if leo_go == True:
         leo.y += 1
@@ -98,8 +100,27 @@ while done:
         ian.y += 1
         if ian.y > 360:
             ian_go = True
-                '''
+               '''
 
+    if ball_go == True:
+        ball.x += 3
+        if ball.x > 385: 
+            ball_go = False
+    else:
+        ball.x -= 3
+        if ball.x < 0:
+            ball_go = True
+
+    if ball_go == True:
+        ball.y += 2
+        if ball.y > 385: 
+            ball_go = False
+    else:
+        ball.y -= 2
+        if ball.y < 0:
+            ball_go = True
+            
+                
     if Intersect (leo.x, ian.x, leo.y, ian.y) == 1:
         if leo_go == True:
             leo_go = False
@@ -113,7 +134,9 @@ while done:
 # отобразим обьекты
     leo.render()
     ian.render()
+    ball.render()
 
+    
     window.blit(screen,  (0, 0))
     pygame.display.flip()
     # делаем задержку
