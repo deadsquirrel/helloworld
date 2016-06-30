@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame
+import random
 
 # создадим окно (высота, ширина)
 window = pygame.display.set_mode((400, 400))
@@ -103,7 +104,7 @@ while done:
                '''
 
     if ball_go == True:
-        ball.x += 3
+        ball.x += random.randint(1, 3) 
         if ball.x > 385: 
             ball_go = False
     else:
@@ -112,7 +113,7 @@ while done:
             ball_go = True
 
     if ball_go == True:
-        ball.y += 2
+        ball.y += random.randint(1, 4) 
         if ball.y > 385: 
             ball_go = False
     else:
