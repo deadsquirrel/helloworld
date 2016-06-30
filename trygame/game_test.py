@@ -37,7 +37,8 @@ ian_go = True
 x_b = random.randint(100, 300)
 y_b = random.randint(100, 300) 
 ball = Sprite(x_b,y_b, 'bb1.png')
-ball_go = True
+ball_go_r = True
+ball_go_d = True
 
 # придумаем скорость
 speed = 2
@@ -108,41 +109,46 @@ while done:
             ian_go = True
                '''
 
-    if ball_go == True:
+    if ball_go_r == True:
         ball.x += speed
         if ball.x > (385 - speed): 
-            ball_go = False
+            ball_go_r = False
     else:
         ball.x -= speed
         if ball.x < 0:
-            ball_go = True
+            ball_go_r = True
 
-    if ball_go == True:
+    if ball_go_d == True:
         ball.y += speed
         if ball.y > (385 - speed): 
-            ball_go = False
+            ball_go_d = False
     else:
         ball.y -= speed
         if ball.y < 0:
-            ball_go = True
+            ball_go_d = True
             
                 
     if Intersect (leo.x, ball.x, leo.y, ball.y, 40, 15) == 1:
-        '''
-        if leo_go == True:
-            leo_go = False
-        else:
-            leo_go = True
-        '''
-        if ball_go == True:
-            ball_go = False
-        else:
-            ball_go = True
-    if Intersect (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
-        if ball_go == True:
-            ball_go = False
-        else:
-            ball_go = True
+        if ball_go_r == True:
+            ball_go_r = False
+        if ball_go_d == True:
+            ball_go_d = False
+        if ball_go_r == False:
+            ball_go_r = True
+        if ball_go_d == False:
+            ball_go_d = True
+        
+#    if Intersect (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
+    if Intersect (ball.x, ian.x, ball.y, ian.y, 15, 40) == 1:
+        if ball_go_r == True:
+            ball_go_r = False
+        if ball_go_d == True:
+            ball_go_d = False
+        if ball_go_r == False:
+            ball_go_r = True
+        if ball_go_d == False:
+            ball_go_d = True
+
             
 # отобразим обьекты
     leo.render()
