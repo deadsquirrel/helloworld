@@ -17,7 +17,7 @@ class Sprite:
         self.y=ypos
         self.bitmap=pygame.image.load(filename)
 # фон делаем прозрачным
-        self.bitmap.set_colorkey((255,255,255))
+        self.bitmap.set_colorkey((255,25,255))
 # отображаем обьект на игровой экран
     def render(self):
         screen.blit(self.bitmap,(self.x, self.y))
@@ -74,7 +74,7 @@ while done:
             if leo.y > 0:
                 leo.y -= 1
         if e.key == pygame.K_s:
-            if leo.y < 360:
+            if leo.y < 160:
                 leo.y += 1
 
         # перемещение героя 2
@@ -85,7 +85,7 @@ while done:
             if ian.x < 360:
                 ian.x += 1
         if e.key == pygame.K_UP:
-            if ian.y > 0:
+            if ian.y > 200:
                 ian.y -= 1
         if e.key == pygame.K_DOWN:
             if ian.y < 360:
@@ -121,16 +121,23 @@ while done:
             ball_go = True
             
                 
-    if Intersect (leo.x, ian.x, leo.y, ian.y) == 1:
+    if Intersect (leo.x, ball.x, leo.y, ball.y) == 1:
+        '''
         if leo_go == True:
             leo_go = False
         else:
             leo_go = True
-        if ian_go == True:
-            ian_go = False
+        '''
+        if ball_go == True:
+            ball_go = False
         else:
-            ian_go = True
-   
+            ball_go = True
+    if Intersect (ian.x, ball.x, ian.y, ball.y) == 1:
+        if ball_go == True:
+            ball_go = False
+        else:
+            ball_go = True
+            
 # отобразим обьекты
     leo.render()
     ian.render()
