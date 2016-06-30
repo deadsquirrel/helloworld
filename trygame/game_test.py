@@ -34,16 +34,21 @@ ian = Sprite(200,360, 'face2.png')
 ian_go_right = True
 ian_go = True
 
-ball = Sprite(200,200, 'bb1.png')
+x_b = random.randint(100, 300)
+y_b = random.randint(100, 300) 
+ball = Sprite(x_b,y_b, 'bb1.png')
 ball_go = True
 
+# придумаем скорость
+speed = 2
+
 # функция проверки пересечения объектов. 40 - величина ширины объектов
-def Intersect(x1, x2, y1, y2):
-    if ((x1 > x2-40) and (x1 < x2+40) and (y1 > y2-40) and (y1 < y2+40)) :
+def Intersect(x1, x2, y1, y2, db1, db2):
+    if ((x1 > x2-db1) and (x1 < x2+db2) and (y1 > y2-db1) and (y1 < y2+db2)) :
         return 1
     else:
-        return 0
-                
+        return 0             
+
 done = True
 while done:
     for e in pygame.event.get():
@@ -104,25 +109,25 @@ while done:
                '''
 
     if ball_go == True:
-        ball.x += random.randint(1, 3) 
-        if ball.x > 385: 
+        ball.x += speed
+        if ball.x > (385 - speed): 
             ball_go = False
     else:
-        ball.x -= 3
+        ball.x -= speed
         if ball.x < 0:
             ball_go = True
 
     if ball_go == True:
-        ball.y += random.randint(1, 4) 
-        if ball.y > 385: 
+        ball.y += speed
+        if ball.y > (385 - speed): 
             ball_go = False
     else:
-        ball.y -= 2
+        ball.y -= speed
         if ball.y < 0:
             ball_go = True
             
                 
-    if Intersect (leo.x, ball.x, leo.y, ball.y) == 1:
+    if Intersect (leo.x, ball.x, leo.y, ball.y, 40, 15) == 1:
         '''
         if leo_go == True:
             leo_go = False
@@ -133,7 +138,7 @@ while done:
             ball_go = False
         else:
             ball_go = True
-    if Intersect (ian.x, ball.x, ian.y, ball.y) == 1:
+    if Intersect (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
         if ball_go == True:
             ball_go = False
         else:
