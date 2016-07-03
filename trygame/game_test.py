@@ -46,11 +46,18 @@ speed = 1
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 
 def Intersect(x1, x2, y1, y2, db1, db2):
-    if ((x1 > x2-db1) and (x1 < x2+db2) and (y1 > y2-db1) and (y1 < y2+db2)) :
+    if (x2>x1 and (x2 < x1+db1) and y2 == y1+db1):
         return 1
     else:
         return 0             
-'''
+
+def Intersect2(x1, x2, y1, y2, db1, db2):
+    if (x2>x1 and (x2+db2) < (x1+db1)) and y1 <= y2+db2:
+        return 1
+    else:
+        return 0             
+
+    '''
 def Intersect(x1, x2, y1, y2, db1, db2):
     if x2 <= (x1+db1) and x2 >= x1 and y2 >=y1 and y2 <= (y1+db1):
         print 'BAX x1=', x1,'x2=', x2,'y1=', y1,'y2=', y2
@@ -145,15 +152,15 @@ while done:
     if Intersect (leo.x, ball.x, leo.y, ball.y, 40, 15) == 1:
         if ball_go_r == True and ball_go_d == False:
             print '1'
-            ball_go_r = False
+            ball_go_r = True
             ball_go_d = True
         if ball_go_r == False and ball_go_d == False:
             print '2'
             ball_go_r = False
             ball_go_d = True
      
-#   if Intersect (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
-    if Intersect (ball.x, ian.x, ball.y, ian.y, 15, 40) == 1:
+    if Intersect2 (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
+        #    if Intersect (ball.x, ian.x, ball.y, ian.y, 15, 40) == 1:
         if ball_go_r == True and ball_go_d == True:
             print '3'
             ball_go_r = True
