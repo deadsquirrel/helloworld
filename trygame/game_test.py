@@ -41,7 +41,7 @@ ball_go_r = True
 ball_go_d = False
 
 # придумаем скорость
-speed = 2
+speed = 1
 
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 '''
@@ -52,10 +52,10 @@ def Intersect(x1, x2, y1, y2, db1, db2):
         return 0             
 '''
 def Intersect(x1, x2, y1, y2, db1, db2):
-    if x2<(x1+db1) and x2>x1 and y2>y1 and y2 < (y1+db1):
+    if x2 <= (x1+db1) and x2 >= x1 and y2 >=y1 and y2 <= (y1+db1):
         print 'BAX'
         return 1
-    elif (x2+db2) > x1 and (x2+db2)<(x1+db1) and y2+db2 > y1 and (y2+db2)<(y1+db1):
+    elif (x2+db2) >= x1 and (x2+db2)<=(x1+db1) and y2+db2 <= y1 and (y2+db2)>=(y1+db1):
         print 'shmyak'
         return 1
     else:
@@ -121,25 +121,7 @@ while done:
         if ian.y > 360:
             ian_go = True
                '''
-#сменим направление движения мяча временно
-    if ball_go_r == True:
-        ball.x -= speed
-        if ball.x < 0: 
-            ball_go_r = False
-    else:
-        ball.x += speed
-        if ball.x > (385-speed):
-            ball_go_r = True
-
-    if ball_go_d == True:
-        ball.y -= speed
-        if ball.y < 0: 
-            ball_go_d = False
-    else:
-        ball.y += speed
-        if ball.y >  (385 - speed): 
-            ball_go_d = True
-            '''
+# движение мяча   
     if ball_go_r == True:
         ball.x += speed
         if ball.x > (385 - speed): 
@@ -157,21 +139,34 @@ while done:
         ball.y -= speed
         if ball.y < 0:
             ball_go_d = True
-            '''
+
             
                 
     if Intersect (leo.x, ball.x, leo.y, ball.y, 40, 15) == 1:
         if ball_go_r == True:
             print '1'
             ball_go_r = False
-            if ball_go_d == True:
-                ball_go_d = False
-                print '2'
-            else:
-                print '3'
-                ball_go_d = True
-                ball_go_r = True
-            
+        if ball_go_d == True:
+            print '2'
+            ball_go_d = False
+        if ball_go_r == False:
+            print '3'
+            ball_go_r = True
+        if ball_go_d == False:
+            print '4'
+            ball_go_d = True
+        '''
+        рисунок 2
+        if ball_go_r == True and ball_go_d == True:
+            ball_go_d = False
+            ball_go_r = False
+            print '2'
+        else:
+            print '3'
+            ball_go_d = True
+            ball_go_r = True
+        '''
+        
         '''
         if ball_go_r == False:
             ball_go_r = True
@@ -181,16 +176,16 @@ while done:
     if Intersect (ian.x, ball.x, ian.y, ball.y, 40, 15) == 1:
 #    if Intersect (ball.x, ian.x, ball.y, ian.y, 15, 40) == 1:
         if ball_go_r == True:
-            print '4'
+            print '5'
             ball_go_r = False
         if ball_go_d == True:
-            print '5'
+            print '6'
             ball_go_d = False
         if ball_go_r == False:
-            print '6'
+            print '7'
             ball_go_r = True
         if ball_go_d == False:
-            print '7'
+            print '8'
             ball_go_d = True
 
             
