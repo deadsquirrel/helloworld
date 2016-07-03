@@ -40,13 +40,16 @@ ball = Sprite(x_b,y_b, 'bb1.png')
 ball_go_r = True
 ball_go_d = True
 
+
 # придумаем скорость
-speed = 1
+speedb = 1
+speedl = 1
+speedi = 1
 
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 
 def Intersect(x1, x2, y1, y2, db1, db2):
-    if (x2>x1 and (x2 < x1+db1) and y2 == y1+db1):
+    if (x2>x1 and (x2+db2) < (x1+db1)) and y2 <= (y1+db1):
         return 1
     else:
         return 0             
@@ -57,18 +60,6 @@ def Intersect2(x1, x2, y1, y2, db1, db2):
     else:
         return 0             
 
-    '''
-def Intersect(x1, x2, y1, y2, db1, db2):
-    if x2 <= (x1+db1) and x2 >= x1 and y2 >=y1 and y2 <= (y1+db1):
-        print 'BAX x1=', x1,'x2=', x2,'y1=', y1,'y2=', y2
-        return 1
-    elif (x2+db2) >= x1 and (x2+db2)<=(x1+db1) and y2+db2 <= y1 and (y2+db2)>=(y1+db1):
-        print 'shmyak x1=', x1,'x2=',x2,'y1=',y1,'y2=',y2
-        return 1
-    else:
-        return 0
-'''    
-
     
 done = True
 while done:
@@ -78,72 +69,52 @@ while done:
            
 # красим окно , цвета в RGB
     screen.fill((15, 106, 15))
-    '''  
-    if leo_go == True:
-        leo.y += 1
-        if leo.y > 360: 
-            leo_go = False
-    else:
-        leo.y -= 1
-        if leo.y < 0:
-            leo_go = True
-    '''
     # событие - нажатие клавиш
     if e.type == pygame.KEYDOWN:
         # перемещение героя
         if e.key == pygame.K_a:
             if leo.x > 0:
-                leo.x -= 1
+                leo.x -= speedl
         if e.key == pygame.K_d:
             if leo.x < 360:
-                leo.x += 1
+                leo.x += speedl
         if e.key == pygame.K_w:
             if leo.y > 0:
-                leo.y -= 1
+                leo.y -= speedl
         if e.key == pygame.K_s:
             if leo.y < 160:
-                leo.y += 1
+                leo.y += speedl
 
         # перемещение героя 2
         if e.key == pygame.K_LEFT:
             if ian.x > 0:
-                ian.x -= 1
+                ian.x -= speedi
         if e.key == pygame.K_RIGHT:
             if ian.x < 360:
-                ian.x += 1
+                ian.x += speedi
         if e.key == pygame.K_UP:
             if ian.y > 200:
-                ian.y -= 1
+                ian.y -= speedi
         if e.key == pygame.K_DOWN:
             if ian.y < 360:
-                ian.y += 1
+                ian.y += speedi
 
-                '''
-    if ian_go == True:
-        ian.y -= 1
-        if ian.y < 0: 
-            ian_go = False
-    else:
-        ian.y += 1
-        if ian.y > 360:
-            ian_go = True
-               '''
 # движение мяча   
     if ball_go_r == True:
-        ball.x += speed
-        if ball.x > (385 - speed): 
+        ball.x += speedb
+        if ball.x > (385 - speedb): 
             ball_go_r = False
     else:
-        ball.x -= speed
+        ball.x -= speedb
         if ball.x < 0:
             ball_go_r = True
 
     if ball_go_d == True:
-        ball.y += speed
-        if ball.y > (385 - speed): 
+        ball.y += speedb
+        if ball.y > (385 - speedb): 
             ball_go_d = False
     else:
-        ball.y -= speed
+        ball.y -= speedb
         if ball.y < 0:
             ball_go_d = True
 
