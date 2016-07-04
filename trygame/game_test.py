@@ -5,11 +5,12 @@ import pygame
 import random
 
 # создадим окно (высота, ширина)
-window = pygame.display.set_mode((400, 400))
+SCREEN_WIDTH = 500
+window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_WIDTH))
 pygame.display.set_caption('Game!')
 
 #игровой экран
-screen = pygame.Surface((400, 400))
+screen = pygame.Surface((SCREEN_WIDTH, SCREEN_WIDTH))
 
 #вводим класс для героя
 class Sprite:
@@ -24,25 +25,25 @@ class Sprite:
         screen.blit(self.bitmap,(self.x, self.y))
 
 # создаем героев
-leo = Sprite(200,0, 'face1.png')
+leo = Sprite(SCREEN_WIDTH/2,0, 'face1.png')
 # новый атрибут герою - рычаг управления_1
 leo_go_right = True
 leo_go = True
 
-ian = Sprite(200,360, 'face2.png')
+ian = Sprite(SCREEN_WIDTH/2,(SCREEN_WIDTH-40), 'face2.png')
 # новый атрибут герою - рычаг управления_2
 ian_go_right = True
 ian_go = True
 
-x_b = random.randint(100, 300)
-y_b = random.randint(100, 300) 
+x_b = random.randint(0, SCREEN_WIDTH)
+y_b = random.randint(0, SCREEN_WIDTH)
 ball = Sprite(x_b,y_b, 'bb1.png')
 rl = random.randint(0,1)
 if rl == 0:
     ball_go_r = True
 else:
     ball_go_r = False
-ud = random.randint(0,1)
+ud = random.randint(0.0,1.0)
 if ud == 0:
     ball_go_d = True
 else:
@@ -50,7 +51,9 @@ else:
 
 
 # придумаем скорость
-speedb = 1
+rr = random.randint(1,2)
+print rr
+speedb = 1*rr
 speedl = 1
 speedi = 1
 
@@ -84,13 +87,13 @@ while done:
             if leo.x > 0:
                 leo.x -= speedl
         if e.key == pygame.K_d:
-            if leo.x < 360:
+            if leo.x < (SCREEN_WIDTH-40):
                 leo.x += speedl
         if e.key == pygame.K_w:
             if leo.y > 0:
                 leo.y -= speedl
         if e.key == pygame.K_s:
-            if leo.y < 160:
+            if leo.y < (SCREEN_WIDTH/2-40):
                 leo.y += speedl
 
         # перемещение героя 2
@@ -98,19 +101,19 @@ while done:
             if ian.x > 0:
                 ian.x -= speedi
         if e.key == pygame.K_RIGHT:
-            if ian.x < 360:
+            if ian.x < (SCREEN_WIDTH-40):
                 ian.x += speedi
         if e.key == pygame.K_UP:
-            if ian.y > 200:
+            if ian.y > (SCREEN_WIDTH/2):
                 ian.y -= speedi
         if e.key == pygame.K_DOWN:
-            if ian.y < 360:
+            if ian.y < (SCREEN_WIDTH-40):
                 ian.y += speedi
 
 # движение мяча   
     if ball_go_r == True:
         ball.x += speedb
-        if ball.x > (385 - speedb): 
+        if ball.x > (SCREEN_WIDTH - 15 - speedb): 
             ball_go_r = False
     else:
         ball.x -= speedb
@@ -119,7 +122,7 @@ while done:
 
     if ball_go_d == True:
         ball.y += speedb
-        if ball.y > (385 - speedb): 
+        if ball.y > (SCREEN_WIDTH - 15 - speedb): 
             ball_go_d = False
     else:
         ball.y -= speedb
