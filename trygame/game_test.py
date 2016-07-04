@@ -37,8 +37,16 @@ ian_go = True
 x_b = random.randint(100, 300)
 y_b = random.randint(100, 300) 
 ball = Sprite(x_b,y_b, 'bb1.png')
-ball_go_r = True
-ball_go_d = True
+rl = random.randint(0,1)
+if rl == 0:
+    ball_go_r = True
+else:
+    ball_go_r = False
+ud = random.randint(0,1)
+if ud == 0:
+    ball_go_d = True
+else:
+    ball_go_d = False
 
 
 # придумаем скорость
