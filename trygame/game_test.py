@@ -43,7 +43,7 @@ if rl == 0:
     ball_go_r = True
 else:
     ball_go_r = False
-ud = random.randint(0.0,1.0)
+ud = random.randint(0,1)
 if ud == 0:
     ball_go_d = True
 else:
@@ -51,11 +51,12 @@ else:
 
 
 # придумаем скорость
-rr = random.randint(1,2)
+rr = random.uniform(1,2)
 print rr
 speedb = 1*rr
-speedl = 1
-speedi = 1
+rrr = random.uniform(2,3)
+speedl = 1*rrr
+speedi = 1*rrr
 
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 
