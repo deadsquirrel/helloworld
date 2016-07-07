@@ -58,6 +58,10 @@ rrr = random.uniform(2,3)
 speedl = 1*rrr
 speedi = 1*rrr
 
+# уменьшаем время отклика клавиатуры (проверить)
+pygame.key.set_repeat(1,1)
+
+
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 
 def Intersect(x1, x2, y1, y2, db1, db2):
@@ -164,5 +168,3 @@ while done:
     pygame.display.flip()
     # делаем задержку
     pygame.time.delay(15)
-    # уменьшаем время отклика клавиатуры (проверить)
-#    key.set_repeat(1,1)
