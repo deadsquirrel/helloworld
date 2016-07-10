@@ -65,13 +65,13 @@ pygame.key.set_repeat(1,1)
 # функция проверки пересечения объектов. 40 - величина ширины объектов
 
 def Intersect(x1, x2, y1, y2, db1, db2):
-    if (x2>x1 and (x2+db2) < (x1+db1)) and y2 <= (y1+db1):
+    if (x2>x1 and (x2+db2) <= (x1+db1)) and y2 <= (y1+db1):
         return 1
     else:
         return 0             
 
 def Intersect2(x1, x2, y1, y2, db1, db2):
-    if (x2>x1 and (x2+db2) < (x1+db1)) and y1 <= y2+db2:
+    if (x2>x1 and (x2+db2) <= (x1+db1)) and y2+db2 >= y1:
         return 1
     else:
         return 0             
