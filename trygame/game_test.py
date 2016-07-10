@@ -6,7 +6,9 @@ import random
 
 # создадим окно (высота, ширина)
 SCREEN_WIDTH = 500
-window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_WIDTH))
+
+
+window = pygame.display.set_mode((SCREEN_WIDTH+100, SCREEN_WIDTH))
 pygame.display.set_caption('Game!')
 
 #игровой экран
@@ -19,7 +21,7 @@ class Sprite:
         self.y=ypos
         self.bitmap=pygame.image.load(filename)
 # фон делаем прозрачным
-        self.bitmap.set_colorkey((255,25,255))
+        self.bitmap.set_colorkey((255,255,255))
 # отображаем обьект на игровой экран
     def render(self):
         screen.blit(self.bitmap,(self.x, self.y))
@@ -57,6 +59,10 @@ speedb = 1*rr
 rrr = random.uniform(2,3)
 speedl = 1*rrr
 speedi = 1*rrr
+
+# вводим переменные для счета
+score1 = 0
+score2 = 0
 
 # уменьшаем время отклика клавиатуры (проверить)
 pygame.key.set_repeat(1,1)
@@ -162,9 +168,27 @@ while done:
     leo.render()
     ian.render()
     ball.render()
-
+    
+    # надо отобразить счет на правой панельке
     
     window.blit(screen,  (0, 0))
     pygame.display.flip()
     # делаем задержку
     pygame.time.delay(15)
+'''
+    #конец игры - пример
+    while done:
+        for event in pygame.event.get ():
+            if event.type == QUIT:
+                sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_SPACE:
+			flag = 0
+		#по Space выход из внутреннего цикла через break
+                    if event.key == K_ESCAPE:
+                        sys.exit () 
+			#по Esc выходим из программы
+                if flag == 0:
+                    break
+                
+'''
