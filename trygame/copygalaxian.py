@@ -48,8 +48,12 @@ if ud == 0:
 else:
     fly_go_d = False
 
+bom = Sprite(-10, SCREEN_HIGHT, 'bom.png')
+bom_go = False
 
-#  скорость. подумаем позже, нужна ли она
+
+    
+#  скорость. 
 rr = random.uniform(1,2)
 print rr
 speedb = 1*rr
@@ -81,16 +85,29 @@ while done:
     # событие - нажатие клавиш
     if e.type == pygame.KEYDOWN:
         # перемещение героя
-        if e.key == pygame.K_a:
+        if e.key == pygame.K_LEFT:
             if plane.x > 0:
                 plane.x -= speedp
-        if e.key == pygame.K_d:
+        if e.key == pygame.K_RIGHT:
             if plane.x < (SCREEN_WIDTH-60):
                 plane.x += speedp
 
+        # стреляем
+        if e.key == pygame.K_SPACE:
+            if bom_go == False:
+                bom.x = plane.x + 25
+                bom.y = plane.y 
+                bom_go = True
 
-
-            
+    # перемещение стрелы
+    if bom.y < 0:
+        bom_go = False
+        
+    if bom_go == False:
+        bom.y = SCREEN_HIGHT
+        bom.x = -10
+    else:
+        bom.y -= speedb+2
                 
 #    if Intersect (plane.x, fly.x, plane.y, fly.y, plane.width, fly.width) == 1:
 #        print 'BABAX!'
@@ -104,7 +121,8 @@ while done:
         '''     
 
             
-# отобразим обьекты
+    # отобразим обьекты
+    bom.render()
     plane.render()
     fly.render()
    
