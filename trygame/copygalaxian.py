@@ -32,8 +32,8 @@ plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 'pl.png')
 pl_go_right = True
 
 # создаем муху
-x_b = random.randint(100, SCREEN_WIDTH-100)
-y_b = random.randint(0, SCREEN_HIGHT/2)
+x_b = random.randint(100, SCREEN_WIDTH/8)
+y_b = random.randint(50, SCREEN_HIGHT/2)
 fly = Sprite(x_b,y_b, 'f1.png')
 # новый атрибут герою - рычаг управления_2
 #fly_go_right = True
@@ -56,7 +56,7 @@ bom_go = False
 #  скорость. 
 rr = random.uniform(1,2)
 print rr
-speedb = 1*rr
+speedf = 1*rr
 rrr = random.uniform(2,3)
 speedp = 1*rrr
 
@@ -108,7 +108,28 @@ while done:
         bom.x = -10
     else:
         bom.y -= speedb+2
-                
+
+
+
+    # fly flying
+    if fly_go_r == True:
+        fly.x += speedf
+        if fly.x > (- 100 - speedf): 
+            fly_go_r = False
+    else:
+        fly.x -= speedf
+        if fly.x < 0:
+            fly_go_r = True
+
+    if fly_go_d == True:
+        fly.y += speedf
+        if fly.y > (SCREEN_WIDTH/2 - speedf): 
+            fly_go_d = False
+    else:
+        fly.y -= speedf
+        if fly.y < 0:
+            fly_go_d = True
+        
 #    if Intersect (plane.x, fly.x, plane.y, fly.y, plane.width, fly.width) == 1:
 #        print 'BABAX!'
         '''
