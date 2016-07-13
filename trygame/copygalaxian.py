@@ -38,8 +38,10 @@ y_f = random.randint(50, SCREEN_HIGHT/2)
 fly = Sprite(x_f,y_f, 'f1.png')
 
 x_f2 = random.randint(x_f+100, x_f+SCREEN_WIDTH/8)
-y_f2 = random.randint(50, y_f)
-fly2 = Sprite(x_f2,y_f2, 'f1.png')
+fly2 = Sprite(x_f2,y_f, 'f1.png')
+
+x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
+fly3 = Sprite(x_f3,y_f, 'f1.png')
 
 # новый атрибут герою - рычаг управления_2
 #fly_go_right = True
@@ -137,6 +139,16 @@ while done:
         if fly2.x < x_f:
             fly_go_r = True
 
+    # fly3 flying
+    if fly_go_r == True:
+        fly3.x += speedf
+        if fly3.x > (x_f3+100): 
+            fly_go_r = False
+    else:
+        fly3.x -= speedf
+        if fly3.x < x_f2:
+            fly_go_r = True
+
     '''
     if fly_go_d == True:
         fly.y += speedf
@@ -165,6 +177,7 @@ while done:
     plane.render()
     fly.render()
     fly2.render()
+    fly3.render()
    
     window.blit(screen,  (0, 0))
     pygame.display.flip()
