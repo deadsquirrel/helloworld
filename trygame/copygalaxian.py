@@ -31,10 +31,16 @@ plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 'pl.png')
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
 
-# создаем муху
+# создаем строй мух
+# координаты первой как точка отсчета
 x_f = random.randint(100, SCREEN_WIDTH/8)
 y_f = random.randint(50, SCREEN_HIGHT/2)
 fly = Sprite(x_f,y_f, 'f1.png')
+
+x_f2 = random.randint(x_f+100, x_f+SCREEN_WIDTH/8)
+y_f2 = random.randint(50, y_f)
+fly2 = Sprite(x_f2,y_f2, 'f1.png')
+
 # новый атрибут герою - рычаг управления_2
 #fly_go_right = True
 rl = random.randint(0,1)
@@ -101,7 +107,7 @@ while done:
                 bom.y = plane.y 
                 bom_go = True
 
-    # перемещение стрелы
+    # перемещение пули
     if bom.y < 0:
         bom_go = False
         
@@ -120,6 +126,17 @@ while done:
         fly.x -= speedf
         if fly.x < 0:
             fly_go_r = True
+
+    # fly2 flying
+    if fly_go_r == True:
+        fly2.x += speedf
+        if fly2.x > (x_f2+100): 
+            fly_go_r = False
+    else:
+        fly2.x -= speedf
+        if fly2.x < x_f:
+            fly_go_r = True
+
     '''
     if fly_go_d == True:
         fly.y += speedf
@@ -147,6 +164,7 @@ while done:
     bom.render()
     plane.render()
     fly.render()
+    fly2.render()
    
     window.blit(screen,  (0, 0))
     pygame.display.flip()
