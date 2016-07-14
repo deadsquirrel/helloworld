@@ -16,9 +16,10 @@ screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
 
 #вводим класс для героя
 class Sprite:
-    def __init__ (self,xpos,ypos,filename):
+    def __init__ (self,xpos,ypos,width,filename):
         self.x=xpos
         self.y=ypos
+        self.w=width 
         self.bitmap=pygame.image.load(filename)
 # фон делаем прозрачным
         self.bitmap.set_colorkey((255,255,255))
@@ -27,7 +28,7 @@ class Sprite:
         screen.blit(self.bitmap,(self.x, self.y))
 
 # создаем самолетик
-plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 'pl.png')
+plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,'pl.png')
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
 
@@ -35,13 +36,14 @@ pl_go_right = True
 # координаты первой как точка отсчета
 x_f = random.randint(100, SCREEN_WIDTH/8)
 y_f = random.randint(50, SCREEN_HIGHT/2)
-fly = Sprite(x_f,y_f, 'f1.png')
+fly = Sprite(x_f,y_f, 50, 'f1.png')
 
 x_f2 = random.randint(x_f+100, x_f+SCREEN_WIDTH/8)
-fly2 = Sprite(x_f2,y_f, 'f1.png')
+fly2 = Sprite(x_f2,y_f, 50, 'f1.png')
 
 x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
-fly3 = Sprite(x_f3,y_f, 'f1.png')
+fly3 = Sprite(x_f3,y_f, 50, 'f1.png')
+
 
 # новый атрибут герою - рычаг управления_2
 #fly_go_right = True
@@ -56,7 +58,7 @@ if ud == 0:
 else:
     fly_go_d = False
 
-bom = Sprite(-10, SCREEN_HIGHT, 'bom.png')
+bom = Sprite(-10, SCREEN_HIGHT, 10,'bom.png')
 bom_go = False
 
 
@@ -160,8 +162,11 @@ while done:
             fly_go_d = True
      '''
 
-#    if Intersect (plane.x, fly.x, plane.y, fly.y, plane.width, fly.width) == 1:
-#        print 'BABAX!'
+    if Intersect (bom.x, fly.x, bom.y, fly.y, bom.w, fly.w) == 1:
+        bom_go = False
+        print 'BABAX!'
+        
+        
     '''
         if fly_go_r == True and fly_go_d == False:
             fly_go_r = True
