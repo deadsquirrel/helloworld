@@ -162,7 +162,7 @@ while done:
             fly_go_d = True
      '''
 
-    if Intersect (bom.x, fly.x, bom.y, fly.y, bom.w, fly.w) == 1:
+    if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w) == 1:
         bom_go = False
         print 'BABAX!'
         
