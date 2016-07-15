@@ -11,6 +11,8 @@ SCREEN_HIGHT = 700
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HIGHT))
 pygame.display.set_caption('Galaxian')
 
+timer=pygame.time.Clock()
+
 #игровой экран
 screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
 
@@ -44,6 +46,8 @@ fly2 = Sprite(x_f2,y_f, 50, 37, 'f1.png')
 
 x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
 fly3 = Sprite(x_f3,y_f, 50, 37, 'f1.png')
+
+boom = Sprite(-200,-200, 140, 110, 'boom.jpg')
 
 
 # новый атрибут герою - рычаг управления_2
@@ -167,6 +171,14 @@ while done:
     if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w, fly.h) == 1:
         bom_go = False
         print 'BABAX!'
+        boom.x = fly.x-45
+        boom.y = fly.y-37
+        fly.x = -50
+        fly.y = -50
+        #        pygame.time.delay(13)
+        timer.tick(30)
+        boom.x = -200
+        boom.y = -200
         
         
     '''
@@ -175,7 +187,7 @@ while done:
             fly_go_d = True
         if fly_go_r == False and fly_go_d == False:
             fly_go_r = False
-            fle_go_d = True
+            fly_go_d = True
     '''     
 
             
@@ -185,6 +197,7 @@ while done:
     fly.render()
     fly2.render()
     fly3.render()
+    boom.render()
    
     window.blit(screen,  (0, 0))
     pygame.display.flip()
