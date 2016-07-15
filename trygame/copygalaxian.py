@@ -16,10 +16,11 @@ screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
 
 #вводим класс для героя
 class Sprite:
-    def __init__ (self,xpos,ypos,width,filename):
+    def __init__ (self,xpos,ypos,width,hight,filename):
         self.x=xpos
         self.y=ypos
-        self.w=width 
+        self.w=width
+        self.h=hight
         self.bitmap=pygame.image.load(filename)
 # фон делаем прозрачным
         self.bitmap.set_colorkey((255,255,255))
@@ -28,7 +29,7 @@ class Sprite:
         screen.blit(self.bitmap,(self.x, self.y))
 
 # создаем самолетик
-plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,'pl.png')
+plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,0, 'pl.png')
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
 
@@ -36,13 +37,13 @@ pl_go_right = True
 # координаты первой как точка отсчета
 x_f = random.randint(100, SCREEN_WIDTH/8)
 y_f = random.randint(50, SCREEN_HIGHT/2)
-fly = Sprite(x_f,y_f, 50, 'f1.png')
+fly = Sprite(x_f,y_f, 50, 37, 'f1.png')
 
 x_f2 = random.randint(x_f+100, x_f+SCREEN_WIDTH/8)
-fly2 = Sprite(x_f2,y_f, 50, 'f1.png')
+fly2 = Sprite(x_f2,y_f, 50, 37, 'f1.png')
 
 x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
-fly3 = Sprite(x_f3,y_f, 50, 'f1.png')
+fly3 = Sprite(x_f3,y_f, 50, 37, 'f1.png')
 
 
 # новый атрибут герою - рычаг управления_2
@@ -58,7 +59,7 @@ if ud == 0:
 else:
     fly_go_d = False
 
-bom = Sprite(-10, SCREEN_HIGHT, 10,'bom.png')
+bom = Sprite(-10, SCREEN_HIGHT, 10, 0, 'bom.png')
 bom_go = False
 
 
@@ -79,9 +80,10 @@ score1 = 0
 
 
 # функция проверки пересечения объектов. db - величина ширины объектов
+#dy-высота объекта
 
-def Intersect(x1, x2, y1, y2, db1, db2):
-    if (x2>x1 and (x2+db2) <= (x1+db1)) and y2 <= (y1+db1):
+def Intersect(x1, x2, y1, y2, db1, db2, dy1):
+    if (x2>=x1 and (x2+db2) <= (x1+db1)) and y2 <= (y1+dy1):
         return 1
     else:
         return 0             
@@ -162,7 +164,7 @@ while done:
             fly_go_d = True
      '''
 
-    if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w) == 1:
+    if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w, fly.h) == 1:
         bom_go = False
         print 'BABAX!'
         
