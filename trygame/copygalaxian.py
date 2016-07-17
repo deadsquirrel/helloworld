@@ -47,7 +47,10 @@ fly2 = Sprite(x_f2,y_f, 50, 37, 'f1.png')
 x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
 fly3 = Sprite(x_f3,y_f, 50, 37, 'f1.png')
 
-boom = Sprite(-200,-200, 140, 110, 'boom.jpg')
+boom1 = Sprite(-200,-200, 140, 110, 'boom1.png')
+boom2 = Sprite(-200,-200, 140, 110, 'boom2.png')
+boom3 = Sprite(-200,-200, 140, 110, 'boom3.png')
+boom = Sprite(-200,-200, 140, 110, 'boom.png')
 
 
 # новый атрибут герою - рычаг управления_2
@@ -171,15 +174,32 @@ while done:
     if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w, fly.h) == 1:
         bom_go = False
         print 'BABAX!'
-        boom.x = fly.x-45
-        boom.y = fly.y-37
+        boom1.x = fly.x-45
+        boom1.y = fly.y-37
         fly.x = -50
         fly.y = -50
+        print 'BABAX1!'
+        boom2.x = boom1.x
+        boom2.y = boom1.y
+        print 'BABAX2!'
+        boom3.x = boom2.x
+        boom3.y = boom2.y
+        print 'BABAX3!'
+        boom.x = boom3.x
+        boom.y = boom3.y
+
         #        pygame.time.delay(13)
         timer.tick(30)
+        '''
+        boom2.x = -200
+        boom2.y = -200
+        boom3.x = -200
+        boom3.y = -200
+        boom1.x = -200
+        boom1.y = -200
         boom.x = -200
         boom.y = -200
-        
+        '''
         
     '''
         if fly_go_r == True and fly_go_d == False:
@@ -192,11 +212,18 @@ while done:
 
             
     # отобразим обьекты
+    boom1.render()
+    boom2.render()
+    boom3.render()
+    boom.render()
     bom.render()
     plane.render()
     fly.render()
     fly2.render()
     fly3.render()
+    boom1.render()
+    boom2.render()
+    boom3.render()
     boom.render()
    
     window.blit(screen,  (0, 0))
