@@ -30,22 +30,41 @@ class Sprite:
     def render(self):
         screen.blit(self.bitmap,(self.x, self.y))
 
+# Это список спрайтов. Каждый мух добавляется в этот список.
+# Список управляется классом, называющимся 'Group.'
+# этот список не содержит игрока и пулю
+fly_list = pygame.sprite.Group()
+ 
+# Это список каждого спрайта. Все блоки, а также блок игрока.
+all_sprites_list = pygame.sprite.Group()
+        
 # создаем самолетик
 plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,0, 'pl.png')
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
 
 # создаем строй мух
-# координаты первой как точка отсчета
-x_f = random.randint(100, SCREEN_WIDTH/8)
-y_f = random.randint(50, SCREEN_HIGHT/2)
-fly = Sprite(x_f,y_f, 50, 37, 'f1.png')
+# координаты первой как точка отсчета - скорее всего уже не нужна
 
+for i in range(50):
+    # ее местоположение
+    x_f = random.randint(100, SCREEN_WIDTH/8)
+    y_f = random.randint(50, SCREEN_HIGHT/2)
+    # создадем муху
+    fly = Sprite(x_f,y_f, 50, 37, 'f1.png')
+    # муху в строй
+    fly_list.add(fly)
+    all_sprite_list.add(fly)
+    
+'''
+остальных мух пока не создаем
 x_f2 = random.randint(x_f+100, x_f+SCREEN_WIDTH/8)
 fly2 = Sprite(x_f2,y_f, 50, 37, 'f1.png')
 
 x_f3 = random.randint(x_f2+100, x_f2+SCREEN_WIDTH/8)
 fly3 = Sprite(x_f3,y_f, 50, 37, 'f1.png')
+'''
+
 
 boom1 = Sprite(-200,-200, 140, 110, 'boom1.png')
 boom2 = Sprite(-200,-200, 140, 110, 'boom2.png')
@@ -139,8 +158,8 @@ while done:
         fly.x -= speedf
         if fly.x < 0:
             fly_go_r = True
-
-    # fly2 flying
+    '''
+    # fly2 flying никто никуда не летит
     if fly_go_r == True:
         fly2.x += speedf
         if fly2.x > (x_f2+100): 
@@ -159,7 +178,7 @@ while done:
         fly3.x -= speedf
         if fly3.x < x_f2:
             fly_go_r = True
-
+    '''
     '''
     if fly_go_d == True:
         fly.y += speedf
@@ -219,8 +238,8 @@ while done:
     bom.render()
     plane.render()
     fly.render()
-    fly2.render()
-    fly3.render()
+#    fly2.render()
+#    fly3.render()
     boom1.render()
     boom2.render()
     boom3.render()
