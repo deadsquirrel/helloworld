@@ -41,6 +41,7 @@ all_sprites_list = pygame.sprite.Group()
         
 # создаем самолетик
 plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,0, 'pl.png')
+all_sprites_list.add_internal(plane)
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
 
@@ -88,7 +89,7 @@ else:
 
 bom = Sprite(-10, SCREEN_HIGHT, 10, 0, 'bom.png')
 bom_go = False
-
+all_sprites_list.add_internal(bom)
 
     
 #  скорость. 
@@ -198,6 +199,8 @@ while done:
         boom1.y = fly.y-37
         fly.x = -50
         fly.y = -50
+        '''фигня
+        меняем вместе с итерацие
         timer.tick(160)
         print 'BABAX1!'
         boom2.x = boom1.x
@@ -212,16 +215,7 @@ while done:
         boom.y = boom3.y
 
         #        pygame.time.delay(13)
-        timer.tick(160)
-        '''
-        boom2.x = -200
-        boom2.y = -200
-        boom3.x = -200
-        boom3.y = -200
-        boom1.x = -200
-        boom1.y = -200
-        boom.x = -200
-        boom.y = -200
+
         '''
         
     '''
