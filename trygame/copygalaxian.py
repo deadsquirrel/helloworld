@@ -11,7 +11,8 @@ SCREEN_HIGHT = 700
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HIGHT))
 pygame.display.set_caption('Galaxian')
 
-timer=pygame.time.Clock()
+timer = pygame.time.Clock()
+
 
 #игровой экран
 screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
@@ -53,8 +54,8 @@ for i in range(50):
     # создадем муху
     fly = Sprite(x_f,y_f, 50, 37, 'f1.png')
     # муху в строй
-    fly_list.add(fly)
-    all_sprite_list.add(fly)
+    fly_list.add_internal(fly)
+    all_sprites_list.add_internal(fly)
     
 '''
 остальных мух пока не создаем
@@ -197,18 +198,21 @@ while done:
         boom1.y = fly.y-37
         fly.x = -50
         fly.y = -50
+        timer.tick(160)
         print 'BABAX1!'
         boom2.x = boom1.x
         boom2.y = boom1.y
+        timer.tick(160)
         print 'BABAX2!'
         boom3.x = boom2.x
         boom3.y = boom2.y
+        timer.tick(160)
         print 'BABAX3!'
         boom.x = boom3.x
         boom.y = boom3.y
 
         #        pygame.time.delay(13)
-        timer.tick(30)
+        timer.tick(160)
         '''
         boom2.x = -200
         boom2.y = -200
