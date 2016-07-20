@@ -103,18 +103,29 @@ speedp = 1*rrr
 
 
 # вводим переменную для счета
-score1 = 0
+score = 0
 
 
 
 # функция проверки пересечения объектов. db - величина ширины объектов
 #dy-высота объекта
-
+'''
 def Intersect(x1, x2, y1, y2, db1, db2, dy1):
     if (x2>=x1 and (x2+db2) <= (x1+db1)) and y2 <= (y1+dy1):
         return 1
     else:
         return 0             
+'''
+# Проверим иначе на столкновение
+# проверяем спрайт бомбы на столкновение с мухоми
+flies_hit_list = pygame.sprite.spritecollide(bom, fly_list, True)  
+
+# Проверить список столкновений.
+if len(flies_hit_list) > 0:
+    score +=len(flies_hit_list)
+    print( score )
+
+
     
 done = True
 while done:
