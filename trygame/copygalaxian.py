@@ -18,6 +18,14 @@ timer = pygame.time.Clock()
 screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
 
 #вводим класс для героя
+# надо переписать класс sprite c учетом
+#
+#  File "copygalaxian.py", line 123, in <module>
+#  flies_hit_list = pygame.sprite.spritecollide(bom, fly_list, True)  
+#  File "/usr/lib/python2.7/dist-packages/pygame/sprite.py", line 1337,
+#  in spritecollide
+#  spritecollide = sprite.rect.colliderect
+
 class Sprite:
     def __init__ (self,xpos,ypos,width,hight,filename):
         self.x=xpos
