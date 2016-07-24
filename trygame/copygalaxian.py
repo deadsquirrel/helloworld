@@ -25,20 +25,24 @@ screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HIGHT))
 #  File "/usr/lib/python2.7/dist-packages/pygame/sprite.py", line 1337,
 #  in spritecollide
 #  spritecollide = sprite.rect.colliderect
+# ## готово ##
 
 class Sprite:
     def __init__ (self,xpos,ypos,width,hight,filename):
+#    def __init__ (self,rect,width,hight,filename):
         self.x=xpos
         self.y=ypos
         self.w=width
         self.h=hight
         self.bitmap=pygame.image.load(filename)
+        self.rect = self.bitmap.get_rect()
+        
 # фон делаем прозрачным
         self.bitmap.set_colorkey((255,255,255))
 # отображаем обьект на игровой экран
     def render(self):
         screen.blit(self.bitmap,(self.x, self.y))
-
+        
 # Это список спрайтов. Каждый мух добавляется в этот список.
 # Список управляется классом, называющимся 'Group.'
 # этот список не содержит игрока и пулю
@@ -46,9 +50,14 @@ fly_list = pygame.sprite.Group()
  
 # Это список каждого спрайта. Все блоки, а также блок игрока.
 all_sprites_list = pygame.sprite.Group()
-        
+
+
+
 # создаем самолетик
-plane = Sprite(SCREEN_WIDTH/2, SCREEN_HIGHT-60, 60,0, 'pl.png')
+#plane.rect.x = (SCREEN_WIDTH / 2)
+#plane.pect.y  = SCREEN_HIGHT-60
+plane = Sprite(SCREEN_WIDTH / 2, SCREEN_HIGHT-60, 60, 0, 'pl.png')
+
 all_sprites_list.add_internal(plane)
 # новый атрибут герою - рычаг управления_1
 pl_go_right = True
@@ -124,14 +133,6 @@ def Intersect(x1, x2, y1, y2, db1, db2, dy1):
     else:
         return 0             
 '''
-# Проверим иначе на столкновение
-# проверяем спрайт бомбы на столкновение с мухоми
-flies_hit_list = pygame.sprite.spritecollide(bom, fly_list, True)  
-
-# Проверить список столкновений.
-if len(flies_hit_list) > 0:
-    score +=len(flies_hit_list)
-    print( score )
 
 
     
@@ -211,6 +212,24 @@ while done:
             fly_go_d = True
      '''
 
+    # Проверим иначе на столкновение
+    # проверяем спрайт бомбы на столкновение с мухоми
+    flies_hit_list = pygame.sprite.spritecollide(bom, fly_list, True)  
+
+    # Проверить список столкновений.
+    if len(flies_hit_list) > 0:
+        score +=len(flies_hit_list)
+        print( score )
+
+### next error ##
+#   File "copygalaxian.py", line 216, in <module>
+#    flies_hit_list = pygame.sprite.spritecollide(bom, fly_list, True)  
+#  File "/usr/lib/python2.7/dist-packages/pygame/sprite.py", line 1341,
+#  in spritecollide
+#   s.kill()
+#   AttributeError: Sprite instance has no attribute 'kill'
+
+        '''
     if Intersect (fly.x, bom.x, fly.y, bom.y, fly.w, bom.w, fly.h) == 1:
         bom_go = False
         print 'BABAX!'
@@ -218,6 +237,9 @@ while done:
         boom1.y = fly.y-37
         fly.x = -50
         fly.y = -50
+        '''
+
+        
         '''фигня
         меняем вместе с итерацие
         timer.tick(160)
